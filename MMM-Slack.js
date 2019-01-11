@@ -35,12 +35,11 @@ Module.register('MMM-Slack',{
 		messageElement.className = 'light xlarge';
 		if(this.slackMessages.length > 0)
 		{
-            var randomMessageId = Math.floor(Math.random() * this.slackMessages.length);
-            messageElement.innerHTML = this.slackMessages[randomMessageId].message;
+            messageElement.innerHTML = this.slackMessages[0].message;
             if(this.config.showUserName) {
                 var userElement = document.createElement('p');
                 userElement.className = 'user';
-                userElement.innerHTML = '@' + this.slackMessages[randomMessageId].user;
+                userElement.innerHTML = '[' + this.slackMessages[0].user + ']';
 			    messageElement.appendChild(userElement);
             }
 		}
