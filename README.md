@@ -1,3 +1,8 @@
+Forked from stir.
+
+- Changed the Random Message Display to Last Message only.
+- Removed '@' from Usernames
+
 # MagicMirror² Module: MMM-Slack
 This is a module integrating Slack in [MagicMirror²](https://github.com/MichMich/MagicMirror). It displays messages from the a given Slack channel in config.js. The module also supports update and delete messages
 
