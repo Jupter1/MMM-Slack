@@ -38,7 +38,7 @@ Module.register('MMM-Slack',{
 		if(this.slackMessages.length > 0)
 		{
 			
-            messageElement.innerHTML = emoji.emojify(this.slackMessages[0].message);
+            messageElement.innerHTML = this.slackMessages[0].message;
             if(this.config.showUserName) {
                 var userElement = document.createElement('p');
                 userElement.className = 'user';

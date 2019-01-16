@@ -4,6 +4,7 @@ var RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 var MemoryDataStore = require('@slack/client').MemoryDataStore;
 var CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
 var WebClient = require('@slack/client').WebClient;
+var emoji = require('node-emoji');
 var userName = '';
 var messageText = '';
 var messages = [];
@@ -98,7 +99,7 @@ module.exports = NodeHelper.create({
 			else
 			{
 				var userName = rtm.dataStore.getUserById(slackMessage.user).name;
-                self.messages.unshift({'messageId': slackMessage.ts, 'user': userName, 'message': slackMessage.text});
+                self.messages.unshift({'messageId': slackMessage.ts, 'user': userName, 'message': emoji.emojify(slackMessage.text)});
 			}
 			self.broadcastMessage();
 		});
