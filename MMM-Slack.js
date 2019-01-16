@@ -32,10 +32,13 @@ Module.register('MMM-Slack',{
 
 	getDom: function() {
 		var messageElement = document.createElement('div');
+		var emoji = require('node-emoji');
+		
 		messageElement.className = 'light xlarge';
 		if(this.slackMessages.length > 0)
 		{
-            messageElement.innerHTML = this.slackMessages[0].message;
+			
+            messageElement.innerHTML = emoji.emojify(this.slackMessages[0].message);
             if(this.config.showUserName) {
                 var userElement = document.createElement('p');
                 userElement.className = 'user';
