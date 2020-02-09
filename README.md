@@ -64,4 +64,9 @@ Add the module to the modules array in the config/config.js file by adding the f
         <td>If true, the latest message in the channel will be displayed on startup</td>
         <td>false</td>
     </tr>
+	<tr>
+        <td>refreshTime</td>
+        <td>How often the messages are updated. (time in milliseconds)</td>
+        <td>60000</td>
+    </tr>
 </table>
