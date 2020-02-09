@@ -14,7 +14,7 @@ Module.register('MMM-Slack',{
         var self = this;
         setInterval(function() {
             self.updateDom(1000);
-        }, 10000);
+        }, 60000);
 	},
 
 	openSlackConnection: function() {
