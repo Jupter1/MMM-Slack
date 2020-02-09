@@ -14,6 +14,5 @@
   "license": "MIT",
   "dependencies": {
     "@slack/client": "3.6.0",
-	"node-emoji": "^1.8.0"
   }
 }
