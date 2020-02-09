@@ -69,11 +69,11 @@ Add the module to the modules array in the config/config.js file by adding the f
 	<tr>
         <td>refreshTime</td>
         <td>The time-interval which defines how often the module is updated.</td>
-        <td>60000</td>
+        <td>1 min = 60000 ms</td>
     </tr>
 	<tr>
         <td>displayTime</td>
-        <td>The time in seconds the last mmessage is displayed.</td>
-        <td>600</td>
+        <td>The time in seconds the last message is displayed.</td>
+        <td>10 min = 600 s</td>
     </tr>
 </table>
