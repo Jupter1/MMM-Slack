@@ -42,7 +42,7 @@ Module.register('MMM-Slack',{
             if(this.config.showUserName) {
                 var userElement = document.createElement('p');
                 userElement.className = 'user';
-                userElement.innerHTML = '[' + this.slackMessages[0].user + ']';
+                userElement.innerHTML = '@' + this.slackMessages[0].user;
 			    messageElement.appendChild(userElement);
             }
 		}
