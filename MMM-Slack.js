@@ -1,7 +1,8 @@
 Module.register('MMM-Slack',{
 	defaults: {
         showLatestMessageOnStartup: false,
-        showUserName: true
+        showUserName: true,
+	refreshTime: 60000
 	},
 	
 	getStyles: function() {
@@ -14,7 +15,7 @@ Module.register('MMM-Slack',{
         var self = this;
         setInterval(function() {
             self.updateDom(1000);
-        }, 10000);
+        }, refreshTime);
 	},
 
 	openSlackConnection: function() {
