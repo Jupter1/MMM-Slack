@@ -1,3 +1,7 @@
+Forked from  grid-x.
+
+- Edited CSS file. 
+
 Forked from stir.
 
 - Changed the Random Message Display to Last Message only.
