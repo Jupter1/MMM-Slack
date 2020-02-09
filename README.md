@@ -1,9 +1,9 @@
 Forked from  grid-x.
 
-- Edited CSS file. 
+- Edited CSS file.
 - Removed Emoji support.
 - Removed brackets '[]' from Username and added '@'.
-- added refreshTime
+- added Timer: module displays only the last message for a given amount of time, and then hides itself until the next message is received.
 
 Forked from stir.
 
