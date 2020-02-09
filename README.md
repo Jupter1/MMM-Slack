@@ -1,6 +1,7 @@
 Forked from  grid-x.
 
 - Edited CSS file. 
+- Removed Emoji support.
 
 Forked from stir.
 
