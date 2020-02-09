@@ -1,9 +1,11 @@
 .user {
-    font-size: 20px;
+    font-size: 15px;
+    font-family: "Roboto Condensed", sans-serif;
     color: silver;
 } 
 
 .message {
     font-size: 30px;
+    font-family: "Roboto Condensed", sans-serif;
     color: white;
 }
