@@ -2,11 +2,13 @@ Forked from  grid-x.
 
 - Edited CSS file. 
 - Removed Emoji support.
+- Removed brackets '[]' from Username and added '@'.
+- added refreshTime
 
 Forked from stir.
 
 - Changed the Random Message Display to Last Message only.
-<s>- Removed '@' from Usernames</s>
+- <s>Removed '@' from Usernames</s>
 
 # MagicMirror² Module: MMM-Slack
 This is a module integrating Slack in [MagicMirror²](https://github.com/MichMich/MagicMirror). It displays messages from the a given Slack channel in config.js. The module also supports update and delete messages
