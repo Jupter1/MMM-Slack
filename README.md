@@ -1,9 +1,9 @@
 Forked from  grid-x.
 
-- Edited CSS file. 
+- Edited CSS file.
 - Removed Emoji support.
 - Removed brackets '[]' from Username and added '@'.
-- added refreshTime
+- added variables for the refresh-time and a display-timer: module displays only the last message for a given amount of time, and then hides itself until the next message is received.
 
 Forked from stir.
 
@@ -68,7 +68,12 @@ Add the module to the modules array in the config/config.js file by adding the f
     </tr>
 	<tr>
         <td>refreshTime</td>
-        <td>How often the messages are updated. (time in milliseconds)</td>
+        <td>The time-interval which defines how often the module is updated.</td>
         <td>60000</td>
+    </tr>
+	<tr>
+        <td>displayTime</td>
+        <td>The time in seconds the last mmessage is displayed.</td>
+        <td>600</td>
     </tr>
 </table>

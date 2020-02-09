@@ -1,7 +1,9 @@
 Module.register('MMM-Slack',{
 	defaults: {
         showLatestMessageOnStartup: false,
-        showUserName: true
+        showUserName: true,
+	refreshTime: 60000,
+	displayTime: 600
 	},
 	
 	getStyles: function() {
@@ -11,10 +13,10 @@ Module.register('MMM-Slack',{
 	start: function() {
 		this.slackMessages = [];
 		this.openSlackConnection();
-        var self = this;
-        setInterval(function() {
-            self.updateDom(1000);
-        }, 60000);
+        	var self = this;
+        	setInterval(function() {
+        		self.updateDom(1000);
+        	}, self.config.refreshTime);
 	},
 
 	openSlackConnection: function() {
@@ -37,13 +39,22 @@ Module.register('MMM-Slack',{
 		if(this.slackMessages.length > 0)
 		{
 			
-            messageElement.innerHTML = this.slackMessages[0].message;
-            if(this.config.showUserName) {
-                var userElement = document.createElement('p');
-                userElement.className = 'user';
-                userElement.innerHTML = '@' + this.slackMessages[0].user;
-			    messageElement.appendChild(userElement);
-            }
+            		messageElement.innerHTML = this.slackMessages[0].message;
+            		if(this.config.showUserName) {
+                		var userElement = document.createElement('p');
+                		userElement.className = 'user';
+                		userElement.innerHTML = '@' + this.slackMessages[0].user;
+			    	messageElement.appendChild(userElement);
+            		}
+		}
+		var timeStamp = Math.floor(Date.now() / 1000);
+		if((timeStamp - this.slackMessages[0].messageId) > this.config.displayTime)
+		{
+			this.hide();
+		}
+		else 
+		{
+			this.show();
 		}
 		return messageElement;
 	}
