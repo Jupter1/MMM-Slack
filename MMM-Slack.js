@@ -37,13 +37,22 @@ Module.register('MMM-Slack',{
 		if(this.slackMessages.length > 0)
 		{
 			
-            messageElement.innerHTML = this.slackMessages[0].message;
-            if(this.config.showUserName) {
-                var userElement = document.createElement('p');
-                userElement.className = 'user';
-                userElement.innerHTML = '@' + this.slackMessages[0].user;
-			    messageElement.appendChild(userElement);
-            }
+            		messageElement.innerHTML = this.slackMessages[0].message;
+            		if(this.config.showUserName) {
+                		var userElement = document.createElement('p');
+                		userElement.className = 'user';
+                		userElement.innerHTML = '@' + this.slackMessages[0].user;
+			    	messageElement.appendChild(userElement);
+            		}
+		}
+		var timeStamp = Math.floor(Date.now() / 1000);
+		if((timeStamp - this.slackMessages[0].messageId) > 600)
+		{
+			this.hide();
+		}
+		else 
+		{
+			this.show();
 		}
 		return messageElement;
 	}
