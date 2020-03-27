@@ -46,29 +46,23 @@ Module.register('MMM-Slack',{
 			var strUserTime = "";
 			
 			if(this.config.showTime) {
-				//var timeElement = document.createElement('p');
-				//timeElement.className = 'time';
 				var date = new Date(this.slackMessages[0].messageId*1000);
 				var hours = date.getHours();
 				var minutes = "0" + date.getMinutes();
-				
 				strUserTime = strUserTime + hours + ':' + minutes.substr(-2) + ' ';
-				//timeUserElement.innerHTML = hours + ':' + minutes.substr(-2) + ' ';
-				//timeElement.innerHTML = this.slackMessages[0].messageId;
-
-				//messageElement.appendChild(timeElement);
 			}
             		if(this.config.showUserName) {
                 		//var userElement = document.createElement('p');
                 		//userElement.className = 'user';
                 		//userElement.innerHTML = '@' + this.slackMessages[0].user;
-				//timeUserElement.innerHTML = timeUserElement.innerHTML + '@' + this.slackMessages[0].user;
+				//messageElement.appendChild(userElement);
 				strUserTime = strUserTime + '@' + this.slackMessages[0].user;
-			    	//messageElement.appendChild(userElement);
             		}
 			
-			timeUserElement.innerHTML = strUserTime
-			messageElement.appendChild(timeUserElement);
+			if(this.config.showTime)||(this.config.showUserName) {
+				timeUserElement.innerHTML = strUserTime
+				messageElement.appendChild(timeUserElement);
+			}
 		}
 		var timeStamp = Math.floor(Date.now() / 1000);
 		if((timeStamp - this.slackMessages[0].messageId) > this.config.displayTime)
