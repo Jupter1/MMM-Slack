@@ -2,6 +2,7 @@ Module.register('MMM-Slack',{
 	defaults: {
         showLatestMessageOnStartup: false,
         showUserName: true,
+	showTime: true,
 	refreshTime: 60000,
 	displayTime: 600
 	},
@@ -40,6 +41,12 @@ Module.register('MMM-Slack',{
 		{
 			
             		messageElement.innerHTML = this.slackMessages[0].message;
+			if(this.config.showTime) {
+				var timeElement = document.createElement('p');
+				timeElement.className = 'messageId';
+				timeElement.innerHTML = this.slackMessages[0].user;
+				messageElement.appendChild(timeElement);
+			}
             		if(this.config.showUserName) {
                 		var userElement = document.createElement('p');
                 		userElement.className = 'user';
