@@ -44,7 +44,7 @@ Module.register('MMM-Slack',{
 			if(this.config.showTime) {
 				var timeElement = document.createElement('p');
 				timeElement.className = 'time';
-				var date = new Date(this.slackMessages[0].messageId]*1000);
+				var date = new Date(this.slackMessages[0].messageId*1000);
 				var hours = date.getHours();
 				var minutes = "0" + date.getMinutes();
 				
