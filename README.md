@@ -62,6 +62,11 @@ Add the module to the modules array in the config/config.js file by adding the f
         <td>If true, the timestamp of the message will be displayed in front of the username.</td>
         <td>true</td>
     </tr>
+	<tr>
+        <td>showSeconds</td>
+        <td>If true, the timestamp includes the seconds. Only works, if showTime is true.</td>
+        <td>false</td>
+    </tr>
     <tr>
         <td>showUserName</td>
         <td>If true, the message sender's user name will be displayed with the message.</td>
