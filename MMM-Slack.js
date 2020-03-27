@@ -59,7 +59,7 @@ Module.register('MMM-Slack',{
 				strUserTime = strUserTime + '@' + this.slackMessages[0].user;
             		}
 			
-			if(this.config.showTime)||(this.config.showUserName) {
+			if(this.config.showTime || this.config.showUserName) {
 				timeUserElement.innerHTML = strUserTime
 				messageElement.appendChild(timeUserElement);
 			}
