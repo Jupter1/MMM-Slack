@@ -3,7 +3,7 @@ Module.register('MMM-Slack',{
         showLatestMessageOnStartup: false,
         showUserName: true,
 	showTime: true,
-	showSeconds: true,
+	showSeconds: false,
 	refreshTime: 60000,
 	displayTime: 600
 	},
@@ -54,7 +54,7 @@ Module.register('MMM-Slack',{
 				
 				if(this.config.showSeconds) {
 					var seconds = "0" + date.getSeconds();
-					strUserTime = strUserTime + seconds.substr(-2);
+					strUserTime = strUserTime + ':' + seconds.substr(-2);
 				}
 				strUserTime = strUserTime + ' ';
 			}
