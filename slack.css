@@ -1,4 +1,4 @@
-.user {
+.timeAndUser {
     font-size: 15px;
     font-family: "Roboto Condensed", sans-serif;
     color: silver;
@@ -8,10 +8,4 @@
     font-size: 30px;
     font-family: "Roboto Condensed", sans-serif;
     color: white;
-}
-
-.time {
-    font-size: 15px;
-    font-family: "Roboto Condensed", sans-serif;
-    color: silfer;
 }
