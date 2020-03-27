@@ -48,17 +48,18 @@ Module.register('MMM-Slack',{
 				var hours = date.getHours();
 				var minutes = "0" + date.getMinutes();
 				
-				timeElement.innerHTML = hours + ':' + minutes.substr(-2)
+				timeElement.innerHTML = hours + ':' + minutes.substr(-2) + ' '
 				//timeElement.innerHTML = this.slackMessages[0].messageId;
 
-				messageElement.appendChild(timeElement);
+				//messageElement.appendChild(timeElement);
 			}
             		if(this.config.showUserName) {
                 		var userElement = document.createElement('p');
                 		userElement.className = 'user';
                 		userElement.innerHTML = '@' + this.slackMessages[0].user;
-			    	messageElement.appendChild(userElement);
+			    	//messageElement.appendChild(userElement);
             		}
+				messageElement.appendChild(timeElement + userElement);
 		}
 		var timeStamp = Math.floor(Date.now() / 1000);
 		if((timeStamp - this.slackMessages[0].messageId) > this.config.displayTime)
