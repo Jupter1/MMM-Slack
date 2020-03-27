@@ -44,7 +44,13 @@ Module.register('MMM-Slack',{
 			if(this.config.showTime) {
 				var timeElement = document.createElement('p');
 				timeElement.className = 'time';
-				timeElement.innerHTML = this.slackMessages[0].messageId;
+				var date = new Date(this.slackMessages[0].messageId]*1000);
+				var hours = date.getHours();
+				var minutes = "0" + date.getMinutes();
+				
+				timeElement.innerHTML = hours + ':' + minutes.substr(-2)
+				//timeElement.innerHTML = this.slackMessages[0].messageId;
+
 				messageElement.appendChild(timeElement);
 			}
             		if(this.config.showUserName) {
