@@ -3,6 +3,7 @@ Module.register('MMM-Slack',{
         showLatestMessageOnStartup: false,
         showUserName: true,
 	showTime: true,
+	showSeconds: true,
 	refreshTime: 60000,
 	displayTime: 600
 	},
@@ -49,7 +50,13 @@ Module.register('MMM-Slack',{
 				var date = new Date(this.slackMessages[0].messageId * 1000);
 				var hours = date.getHours();
 				var minutes = "0" + date.getMinutes();
-				strUserTime = strUserTime + hours + ':' + minutes.substr(-2) + ' ';
+				strUserTime = strUserTime + hours + ':' + minutes.substr(-2);
+				
+				if(this.config.showSeconds) {
+					var seconds = "0" + date.getSeconds();
+					strUserTime = strUserTime + seconds.substr(-2);
+				}
+				strUserTime = strUserTime + ' ';
 			}
             		if(this.config.showUserName) {
                 		//var userElement = document.createElement('p');
