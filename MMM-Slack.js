@@ -46,25 +46,25 @@ Module.register('MMM-Slack',{
 			timeUserElement.className = 'timeAndUser';
 			var strUserTime = "";
 			
-			if(this.config.showTime) {
-				var date = new Date(this.slackMessages[0].messageId * 1000);
-				var hours = date.getHours();
-				var minutes = "0" + date.getMinutes();
-				strUserTime = strUserTime + hours + ':' + minutes.substr(-2);
-				
-				if(this.config.showSeconds) {
-					var seconds = "0" + date.getSeconds();
-					strUserTime = strUserTime + ':' + seconds.substr(-2);
-				}
-				strUserTime = strUserTime + ' ';
-			}
             		if(this.config.showUserName) {
                 		//var userElement = document.createElement('p');
                 		//userElement.className = 'user';
                 		//userElement.innerHTML = '@' + this.slackMessages[0].user;
 				//messageElement.appendChild(userElement);
-				strUserTime = strUserTime + '@' + this.slackMessages[0].user;
+				strUserTime = strUserTime + this.slackMessages[0].user;
             		}
+			
+			if(this.config.showTime) {
+				var date = new Date(this.slackMessages[0].messageId * 1000);
+				var hours = date.getHours();
+				var minutes = "0" + date.getMinutes();
+				strUserTime = strUserTime + ' @' + hours + ':' + minutes.substr(-2);
+				
+				if(this.config.showSeconds) {
+					var seconds = "0" + date.getSeconds();
+					strUserTime = strUserTime + ':' + seconds.substr(-2);
+				}
+			}
 			
 			if(this.config.showTime || this.config.showUserName) {
 				timeUserElement.innerHTML = strUserTime
