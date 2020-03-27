@@ -46,7 +46,7 @@ Module.register('MMM-Slack',{
 			var strUserTime = "";
 			
 			if(this.config.showTime) {
-				var date = new Date(this.slackMessages[0].messageId*1000);
+				var date = new Date(this.slackMessages[0].messageId * 1000);
 				var hours = date.getHours();
 				var minutes = "0" + date.getMinutes();
 				strUserTime = strUserTime + hours + ':' + minutes.substr(-2) + ' ';
