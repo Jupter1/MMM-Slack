@@ -40,8 +40,8 @@ Module.register('MMM-Slack',{
 		messageElement.className = 'message';
 		if(this.slackMessages.length > 0)
 		{
-			
-            		messageElement.innerHTML = this.slackMessages[0].message;
+			var randomMessageId =  Math.floor(Math.random() * this.slackMessages.length);
+            		messageElement.innerHTML = this.slackMessages[randomMessageId].message;
 			var timeUserElement = document.createElement('p');
 			timeUserElement.className = 'timeAndUser';
 			var strUserTime = "";
@@ -51,11 +51,11 @@ Module.register('MMM-Slack',{
                 		//userElement.className = 'user';
                 		//userElement.innerHTML = '@' + this.slackMessages[0].user;
 				//messageElement.appendChild(userElement);
-				strUserTime = strUserTime + this.slackMessages[0].user;
+				strUserTime = strUserTime + this.slackMessages[randomMessageId].user;
             		}
 			
 			if(this.config.showTime) {
-				var date = new Date(this.slackMessages[0].messageId * 1000);
+				var date = new Date(this.slackMessages[randomMessageId].messageId * 1000);
 				var hours = date.getHours();
 				var minutes = "0" + date.getMinutes();
 				strUserTime = strUserTime + ' @' + hours + ':' + minutes.substr(-2);
@@ -72,7 +72,7 @@ Module.register('MMM-Slack',{
 			}
 		}
 		var timeStamp = Math.floor(Date.now() / 1000);
-		if((timeStamp - this.slackMessages[0].messageId) > this.config.displayTime)
+		if((timeStamp - this.slackMessages[randomMessageId].messageId) > this.config.displayTime)
 		{
 			this.hide();
 		}
