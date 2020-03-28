@@ -14,6 +14,7 @@ Module.register('MMM-Slack',{
 
 	start: function() {
 		this.slackMessages = [];
+		this.counter = 0;
 		this.openSlackConnection();
         	var self = this;
         	setInterval(function() {
