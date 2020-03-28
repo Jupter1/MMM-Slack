@@ -40,7 +40,7 @@ Module.register('MMM-Slack',{
 		messageElement.className = 'message';
 		if(this.slackMessages.length > 0)
 		{
-			var randomMessageId =  Math.floor(Math.random() * this.slackMessages.length);
+			var randomMessageId =  Math.floor(Math.round(Math.random() * this.slackMessages.length));
             		messageElement.innerHTML = this.slackMessages[randomMessageId].message;
 			var timeUserElement = document.createElement('p');
 			timeUserElement.className = 'timeAndUser';
