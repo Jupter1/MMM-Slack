@@ -82,6 +82,10 @@ Module.register('MMM-Slack',{
 		{
 			this.show();
 		}
+		this.counter = this.counter + 1;
+		if (this.counter == this.config.maxUserMessages) {
+			this.counter = 0;
+		}
 		
 		return messageElement;
 	}
