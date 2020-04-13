@@ -6,6 +6,7 @@ Forked from  grid-x.
 - Added Timestamp. It will display as username @hh:mm.
 - Added variables for the refresh-time and a display-time: Module displays the last message of each user for a given amount of time. When the module updates, the message is updated to the next message wich is from a different author. If no message younger than the displayTime exists, the module will hide itself.
 - added variable to prevent an immediate refresh when a new message arrives.
+See table below for configuration options.
 
 
 Forked from stir.
