@@ -96,7 +96,7 @@ Add the module to the modules array in the config/config.js file by adding the f
         	<td>false</td>
     	</tr>
 	<tr>
-        	<td>interval</td>
+        	<td>updateInterval</td>
         	<td>The time-interval which defines how often the module is updated.</td>
         	<td>1 min = 60000 ms</td>
 	</tr>
