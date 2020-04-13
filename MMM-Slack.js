@@ -84,7 +84,7 @@ Module.register('MMM-Slack',{
 			else  {
 				if (tooOld) {
 					this.authors = [];
-					this.counter = 0;
+					this.pointer = 0;
 				}
 				messageElement.innerHTML = this.slackMessages[this.pointer].message;
 				var timeUserElement = document.createElement('p');
