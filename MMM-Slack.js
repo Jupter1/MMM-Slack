@@ -69,7 +69,6 @@ Module.register('MMM-Slack',{
 					
 					if (newAuthor == this.authors.length) {
 						boolAuthor = false;
-						this.pointer = this.counter;
 					}
 					else {
 						this.counter = this.counter + 1;
