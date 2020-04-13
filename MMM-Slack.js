@@ -42,14 +42,34 @@ Module.register('MMM-Slack',{
 		var messageElement = document.createElement('div');
 		
 		messageElement.className = 'message';
-		if(this.slackMessages.length > 0)
-		{
+		if(this.slackMessages.length > 0) {
 			var tooOld = false;
 			var timeStamp = Math.floor(Date.now() / 1000);
-			if((timeStamp - this.slackMessages[this.counter].messageId) > this.config.displayTime) {
-				tooOld = true;
-			}
+			var boolAuthor = true;
 			
+			while (boolAuthor && (tooOld === false)) {
+				if((timeStamp - this.slackMessages[this.counter].messageId) > this.config.displayTime) {
+					tooOld = true;
+				}
+				else {	
+					var newAuthor = 0;
+					for (i=0; i<this.authors.length; i++) {
+						if (this.authors[i] !== this.slackMessages[this.counter].user) {
+							newAuthor = newAuthor + 1;
+						}
+					}
+					
+					if (newAuthor == this.authors.length) {
+						boolAuthor = false;
+						this.authors.push(this.slackMessages[this.counter].user);
+						this.pointer = this.counter;
+					}
+					else {
+						this.counter = this.counter + 1;
+					}
+				}
+			}
+				
 			if (tooOld === true) {
 				if (this.counter === 0) {
 					this.hide();
@@ -57,18 +77,7 @@ Module.register('MMM-Slack',{
 				this.authors = [];
 				this.counter = 0;
 			}
-			else {
-				var boolAuthor = false;
-				for (i=0; i<this.authors.length; i++) {
-					if (this.authors[i] === this.slackMessages[this.counter].user) {
-						boolAuthor = true;
-					}
-				}
-				if (boolAuthor === false) {
-					this.authors.push(this.slackMessages[this.counter].user);
-					this.pointer = this.counter;
-				}
-				
+			else  {
 				messageElement.innerHTML = this.slackMessages[this.pointer].message;
 				var timeUserElement = document.createElement('p');
 				timeUserElement.className = 'timeAndUser';
@@ -101,7 +110,7 @@ Module.register('MMM-Slack',{
 				
 				this.show();
 				this.counter = this.counter + 1;
-				if (this.counter === this.config.maxUserMessages) {
+				if (this.authors.length === this.config.maxUserMessages) {
 					this.authors = [];
 					this.counter = 0;
 				}
