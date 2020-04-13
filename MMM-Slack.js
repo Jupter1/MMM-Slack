@@ -67,7 +67,7 @@ Module.register('MMM-Slack',{
 					if (newAuthor == this.authors.length) {
 						boolAuthor = false;
 						this.authors.push(this.slackMessages[this.counter].user);
-						this.pointer = this.counter;
+						
 					}
 					else {
 						this.counter = this.counter + 1;
@@ -78,14 +78,12 @@ Module.register('MMM-Slack',{
 			if (tooOld && this.counter === 0) {
 				this.hide();
 			}
-				//this.authors = [];
-				//this.counter = 0;
-			//}
 			else  {
 				if (tooOld) {
 					this.authors = [];
-					this.pointer = 0;
+					this.counter = 0;
 				}
+				this.pointer = this.counter;
 				messageElement.innerHTML = this.slackMessages[this.pointer].message;
 				var timeUserElement = document.createElement('p');
 				timeUserElement.className = 'timeAndUser';
