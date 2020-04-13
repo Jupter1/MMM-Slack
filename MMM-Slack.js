@@ -77,7 +77,7 @@ Module.register('MMM-Slack',{
 				}
 			}
 				
-			if (tooOld && this.pointer === 0) {
+			if (tooOld && this.counter === 0) {
 				this.hide();
 				this.authors = [];
 				this.counter = 0;
