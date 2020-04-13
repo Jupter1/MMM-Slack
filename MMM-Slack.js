@@ -26,7 +26,7 @@ Module.register('MMM-Slack',{
         	var self = this;
         	setInterval(function() {
         		self.updateDom(this.config.animationSpeed);
-        	}, self.config.updateIinterval);
+        	}, self.config.updateInterval);
 	},
 
 	openSlackConnection: function() {
