@@ -76,7 +76,7 @@ Module.register('MMM-Slack',{
 				}
 			}
 				
-			if (tooOld && this.counter === 0) {
+			if (tooOld && this.pointer === 0) {
 				this.hide();
 			}
 			else  {
