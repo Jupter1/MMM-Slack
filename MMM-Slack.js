@@ -65,6 +65,7 @@ Module.register('MMM-Slack',{
 					}
 				}
 				if (boolAuthor === false) {
+					this.author.push(this.slackMessages[this.counter].user);
 					this.pointer = this.counter;
 				}
 				
