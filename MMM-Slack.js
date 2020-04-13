@@ -4,7 +4,7 @@ Module.register('MMM-Slack',{
         showUserName: true,
 	showTime: true,
 	showSeconds: false,
-	maxUserMessages: 3,
+	maxUsers: 3,
 	refreshTime: 60000,
 	displayTime: 600,
 	urgentRefresh: false
@@ -41,9 +41,6 @@ Module.register('MMM-Slack',{
 					this.updateDom(1000);
 					this.authors = [];
 					this.counter = 0;
-				}
-				else {
-					this.counter = this.counter + 1;
 				}
 			}
 		}
@@ -95,10 +92,6 @@ Module.register('MMM-Slack',{
 				var strUserTime = "";
 				
 				if(this.config.showUserName) {
-                			//var userElement = document.createElement('p');
-                			//userElement.className = 'user';
-                			//userElement.innerHTML = '@' + this.slackMessages[0].user;
-					//messageElement.appendChild(userElement);
 					strUserTime = strUserTime + this.slackMessages[this.pointer].user;
 				}
 					
@@ -121,7 +114,7 @@ Module.register('MMM-Slack',{
 				
 				this.show();
 				this.counter = this.counter + 1;
-				if (this.authors.length === this.config.maxUserMessages) {
+				if (this.authors.length === this.config.maxUsers) {
 					this.authors = [];
 					this.counter = 0;
 				}
