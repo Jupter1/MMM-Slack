@@ -116,7 +116,9 @@ Module.register('MMM-Slack',{
 				}
 				
 				this.show();
-				this.counter = this.counter + 1;
+				if (!tooOld) {
+					this.counter = this.counter + 1;
+				}
 				if (this.authors.length === this.config.maxUsers) {
 					this.authors = [];
 					this.counter = 0;
