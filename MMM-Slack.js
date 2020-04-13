@@ -1,6 +1,5 @@
 Module.register('MMM-Slack',{
 	defaults: {
-        //showLatestMessageOnStartup: false,
         showUserName: true,
 	showTime: true,
 	showSeconds: false,
@@ -50,7 +49,7 @@ Module.register('MMM-Slack',{
 	getDom: function() {
 		var messageElement = document.createElement('div');
 		
-		messageElement.className = 'message';
+		messageElement.className = 'slackMessage';
 		if(this.slackMessages.length > 0) {
 			var tooOld = false;
 			var timeStamp = Math.floor(Date.now() / 1000);
