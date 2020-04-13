@@ -34,7 +34,7 @@ Module.register('MMM-Slack',{
 			if(payload != null) {
 				this.slackMessages = payload;
 				//this.authors = [];
-				this.counter = this.counter + 1;
+				this.counter = this.pointer;
 				this.updateDom(2.5 * 1000);
 			}
 		}
