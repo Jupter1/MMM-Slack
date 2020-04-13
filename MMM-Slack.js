@@ -42,6 +42,9 @@ Module.register('MMM-Slack',{
 					this.authors = [];
 					this.counter = 0;
 				}
+				else {
+					this.counter = this.counter + 1;
+				}
 			}
 		}
 	},
