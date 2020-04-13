@@ -1,6 +1,6 @@
 Module.register('MMM-Slack',{
 	defaults: {
-        showLatestMessageOnStartup: false,
+        //showLatestMessageOnStartup: false,
         showUserName: true,
 	showTime: true,
 	showSeconds: false,
