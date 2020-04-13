@@ -20,6 +20,9 @@ Module.register('MMM-Slack',{
 		this.pointer = 0;
 		this.authors = [];
 		this.openSlackConnection();
+		if (!this.config.urgentRefresh) {
+			this.updateDom(1000);
+		}
         	var self = this;
         	setInterval(function() {
         		self.updateDom(1000);
@@ -34,10 +37,10 @@ Module.register('MMM-Slack',{
 		if(notification === 'SLACK_DATA'){
 			if(payload != null) {
 				this.slackMessages = payload;
-				this.authors = [];
-				this.counter = 0;
 				if (this.config.urgentRefresh) {
 					this.updateDom(1000);
+					this.authors = [];
+					this.counter = 0;
 				}
 			}
 		}
