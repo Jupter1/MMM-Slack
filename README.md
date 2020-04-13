@@ -4,7 +4,8 @@ Forked from  grid-x.
 - Removed Emoji support.
 - Removed brackets '[]' from Username.
 - Added Timestamp. It will display as username @hh:mm.
-- added variables for the refresh-time and a display-timer: module displays the last message of each user for a given amount of time. When the module updates, the message is updated if the author is different than one of the previous messages. If no message that is not too old exists, the module hides itself.
+- Added variables for the refresh-time and a display-time: Module displays the last message of each user for a given amount of time. When the module updates, the message is updated to the next message wich is from a different author. If no message younger than the displayTime exists, the module will hide itself.
+- added variable to prevent an immediate refresh when a new message arrives.
 
 
 Forked from stir.
@@ -55,37 +56,47 @@ Add the module to the modules array in the config/config.js file by adding the f
 	</tr>
 	<tr>
 		<td>slackChannel</td>
-		<td>Which Slack channel you want to display messages from</td>
+		<td>Which Slack channel you want to display messages from.</td>
 		<td>test</td>
 	</tr>
 	<tr>
-        <td>showTime</td>
-        <td>If true, the timestamp of the message will be displayed in front of the username.</td>
-        <td>true</td>
-    </tr>
+        	<td>maxUsers</td>
+       	 	<td>Indicates how many different Slack-Users will be displayed and thus, how many messages can be cycled through at most. If set to 1, only the newest message will appear.</td>
+        	<td>3</td>
+    	</tr>
 	<tr>
-        <td>showSeconds</td>
-        <td>If true, the timestamp includes the seconds. Only works, if showTime is true.</td>
-        <td>false</td>
-    </tr>
-    <tr>
-        <td>showUserName</td>
-        <td>If true, the message sender's user name will be displayed with the message.</td>
-        <td>true</td>
-    </tr>
-    <tr>
-        <td>showLatestMessageOnStartup</td>
-        <td>If true, the latest message in the channel will be displayed on startup</td>
-        <td>false</td>
-    </tr>
+        	<td>showUserName</td>
+       	 	<td>If true, the message sender's user name will be displayed with the message.</td>
+        	<td>true</td>
+    	</tr>
 	<tr>
-        <td>refreshTime</td>
-        <td>The time-interval which defines how often the module is updated.</td>
-        <td>1 min = 60000 ms</td>
-    </tr>
+        	<td>showTime</td>
+        	<td>If true, the timestamp of the message will be displayed after the username.</td>
+        	<td>true</td>
+    	</tr>
 	<tr>
-        <td>displayTime</td>
-        <td>The time in seconds the last message is displayed.</td>
-        <td>10 min = 600 s</td>
-    </tr>
+        	<td>showSeconds</td>
+        	<td>If true, the timestamp includes the seconds. Only works, if showTime is true.</td>
+        	<td>false</td>
+    	</tr>
+    	<tr>
+	        <td>showLatestMessageOnStartup</td>
+        	<td>If true, the latest message in the channel will be displayed on startup</td>
+        	<td>false</td>
+    	</tr>
+	<tr>
+        	<td>refreshTime</td>
+        	<td>The time-interval which defines how often the module is updated.</td>
+        	<td>1 min = 60000 ms</td>
+	</tr>
+	<tr>
+        	<td>displayTime</td>
+        	<td>Thetime in seconds the last message is displayed.</td>
+        	<td>10 min = 600 s</td>
+    	</tr>
+	<tr>
+        	<td>urgentRefresh</td>
+        	<td>If true, the messages will be updated as soon as a new message arrives. If false, the cycle will be completed before the newest message will be shown.</td>
+        	<td>false</td>
+    	</tr>
 </table>
