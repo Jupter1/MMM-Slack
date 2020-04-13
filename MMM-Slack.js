@@ -88,7 +88,7 @@ Module.register('MMM-Slack',{
 				this.authors.push(this.slackMessages[this.pointer].user);
 				messageElement.innerHTML = this.slackMessages[this.pointer].message;
 				var timeUserElement = document.createElement('p');
-				timeUserElement.className = 'timeAndUser';
+				timeUserElement.className = 'slackUserAndTime';
 				var strUserTime = "";
 				
 				if(this.config.showUserName) {
