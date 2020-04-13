@@ -4,7 +4,7 @@ Module.register('MMM-Slack',{
 	showTime: true,
 	showSeconds: false,
 	maxUsers: 3,
-	refreshTime: 60000,
+	interval: 60000,
 	displayTime: 600,
 	urgentRefresh: false,
 	animationSpeed: 1000
@@ -26,7 +26,7 @@ Module.register('MMM-Slack',{
         	var self = this;
         	setInterval(function() {
         		self.updateDom(this.config.animationSpeed);
-        	}, self.config.refreshTime);
+        	}, self.config.interval);
 	},
 
 	openSlackConnection: function() {
