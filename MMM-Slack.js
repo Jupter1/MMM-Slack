@@ -7,7 +7,8 @@ Module.register('MMM-Slack',{
 	maxUsers: 3,
 	refreshTime: 60000,
 	displayTime: 600,
-	urgentRefresh: false
+	urgentRefresh: false,
+	animationSpeed: 1000
 	},
 	
 	getStyles: function() {
@@ -21,11 +22,11 @@ Module.register('MMM-Slack',{
 		this.authors = [];
 		this.openSlackConnection();
 		if (!this.config.urgentRefresh) {
-			this.updateDom(1000);
+			this.updateDom(this.config.animationSpeed);
 		}
         	var self = this;
         	setInterval(function() {
-        		self.updateDom(100);
+        		self.updateDom(this.config.animationSpeed);
         	}, self.config.refreshTime);
 	},
 
@@ -38,7 +39,7 @@ Module.register('MMM-Slack',{
 			if(payload != null) {
 				this.slackMessages = payload;
 				if (this.config.urgentRefresh) {
-					this.updateDom(1000);
+					this.updateDom(this.config.animationSpeed);
 					this.authors = [];
 					this.counter = 0;
 				}
