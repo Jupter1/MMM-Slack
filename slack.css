@@ -3,7 +3,6 @@
     font-family: "Roboto Condensed", sans-serif;
     color: silver;
     margin: 10px;
-    padding-top: 0px;
 } 
 
 .slackMessage {
@@ -11,5 +10,4 @@
     font-family: "Roboto Condensed", sans-serif;
     font-weight: 300;
     color: white;
-    padding-bottom: 0px;
 }
