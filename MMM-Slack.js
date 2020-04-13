@@ -35,7 +35,7 @@ Module.register('MMM-Slack',{
 				this.slackMessages = payload;
 				this.authors = [];
 				this.counter = 0;
-				this.updateDom(1000);
+				//this.updateDom(1000);
 			}
 		}
 	},
