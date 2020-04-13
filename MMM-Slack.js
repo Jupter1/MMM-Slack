@@ -33,8 +33,6 @@ Module.register('MMM-Slack',{
 		if(notification === 'SLACK_DATA'){
 			if(payload != null) {
 				this.slackMessages = payload;
-				this.authors = [];
-				this.counter = 0;
 				this.updateDom(2.5 * 1000);
 			}
 		}
