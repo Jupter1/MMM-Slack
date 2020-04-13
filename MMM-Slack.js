@@ -6,7 +6,8 @@ Module.register('MMM-Slack',{
 	showSeconds: false,
 	maxUserMessages: 3,
 	refreshTime: 60000,
-	displayTime: 600
+	displayTime: 600,
+	urgentRefresh: false
 	},
 	
 	getStyles: function() {
@@ -35,7 +36,9 @@ Module.register('MMM-Slack',{
 				this.slackMessages = payload;
 				this.authors = [];
 				this.counter = 0;
-				//this.updateDom(1000);
+				if (this.config.urgentRefresh) {
+					this.updateDom(1000);
+				}
 			}
 		}
 	},
@@ -72,14 +75,17 @@ Module.register('MMM-Slack',{
 				}
 			}
 				
-			if (tooOld === true) {
-				if (this.counter === 0) {
-					this.hide();
-				}
-				this.authors = [];
-				this.counter = 0;
+			if (tooOld && this.counter === 0) {
+				this.hide();
 			}
+				//this.authors = [];
+				//this.counter = 0;
+			//}
 			else  {
+				if (tooOld) {
+					this.authors = [];
+					this.counter = 0;
+				}
 				messageElement.innerHTML = this.slackMessages[this.pointer].message;
 				var timeUserElement = document.createElement('p');
 				timeUserElement.className = 'timeAndUser';
