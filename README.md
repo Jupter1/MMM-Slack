@@ -4,7 +4,7 @@ Forked from  grid-x.
 - Removed Emoji support.
 - Removed brackets '[]' from Username.
 - Added Timestamp. It will display as username @hh:mm.
-- Added variables for the refresh-time and a display-time: Module displays the last message of each user for a given amount of time. When the module updates, the message is updated to the next message wich is from a different author. If no message younger than the displayTime exists, the module will hide itself.
+- Added variables for a refresh interval and a display-time: Module displays the last message of each user for a given amount of time. When the module updates, the message is updated to the next message wich is from a different author. If no message younger than the displayTime exists, the module will hide itself.
 - added variable to prevent an immediate refresh when a new message arrives.
 See table below for configuration options.
 
@@ -86,13 +86,8 @@ Add the module to the modules array in the config/config.js file by adding the f
         	<td>false</td>
     	</tr>
 	<tr>
-        	<td>refreshTime</td>
-        	<td>The time-interval which defines how often the module is updated.</td>
-        	<td>1 min = 60000 ms</td>
-	</tr>
-	<tr>
         	<td>displayTime</td>
-        	<td>Thetime in seconds the last message is displayed.</td>
+        	<td>The time in seconds the last message is displayed.</td>
         	<td>10 min = 600 s</td>
     	</tr>
 	<tr>
@@ -100,4 +95,14 @@ Add the module to the modules array in the config/config.js file by adding the f
         	<td>If true, the messages will be updated as soon as a new message arrives. If false, the cycle will be completed before the newest message will be shown.</td>
         	<td>false</td>
     	</tr>
+	<tr>
+        	<td>interval</td>
+        	<td>The time-interval which defines how often the module is updated.</td>
+        	<td>1 min = 60000 ms</td>
+	</tr>
+	<tr>
+        	<td>animationSpeed</td>
+        	<td>Speed of the update animation. The value is given in milliseconds.</td>
+        	<td>1000 ms</td>
+	</tr>
 </table>
