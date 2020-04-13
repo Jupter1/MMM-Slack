@@ -16,6 +16,8 @@ Module.register('MMM-Slack',{
 	start: function() {
 		this.slackMessages = [];
 		this.counter = 0;
+		this.pointer = 0;
+		this.authors = [];
 		this.openSlackConnection();
         	var self = this;
         	setInterval(function() {
@@ -42,49 +44,68 @@ Module.register('MMM-Slack',{
 		messageElement.className = 'message';
 		if(this.slackMessages.length > 0)
 		{
-			//var randomMessageId =  Math.floor(Math.random() * 5);
-            		messageElement.innerHTML = this.slackMessages[this.counter].message;
-			var timeUserElement = document.createElement('p');
-			timeUserElement.className = 'timeAndUser';
-			var strUserTime = "";
+			var tooOld = false;
+			var timeStamp = Math.floor(Date.now() / 1000);
+			if((timeStamp - this.slackMessages[this.counter].messageId) > this.config.displayTime) {
+				tooOld = true;
+			}
 			
-            		if(this.config.showUserName) {
-                		//var userElement = document.createElement('p');
-                		//userElement.className = 'user';
-                		//userElement.innerHTML = '@' + this.slackMessages[0].user;
-				//messageElement.appendChild(userElement);
-				strUserTime = strUserTime + this.slackMessages[this.counter].user;
-            		}
-			
-			if(this.config.showTime) {
-				var date = new Date(this.slackMessages[this.counter].messageId * 1000);
-				var hours = date.getHours();
-				var minutes = "0" + date.getMinutes();
-				strUserTime = strUserTime + ' @' + hours + ':' + minutes.substr(-2);
+			if (tooOld === true) {
+				if (this.counter === 0) {
+					this.hide();
+				}
+				this.authors = [];
+				this.counter = 0;
+			}
+			else {
+				var boolAuthor = false;
+				for (i=0; i<this.authors.length; i++) {
+					if (this.authors[i] === this.slackMessages[this.counter].user) {
+						boolAuthor = true;
+					}
+				}
+				if (boolAuthor === false) {
+					this.authors.push(this.slackMessages[this.counter].user);
+					this.pointer = this.counter;
+				}
 				
-				if(this.config.showSeconds) {
-					var seconds = "0" + date.getSeconds();
-					strUserTime = strUserTime + ':' + seconds.substr(-2);
+				messageElement.innerHTML = this.slackMessages[this.pointer].message;
+				var timeUserElement = document.createElement('p');
+				timeUserElement.className = 'timeAndUser';
+				var strUserTime = "";
+				
+				if(this.config.showUserName) {
+                			//var userElement = document.createElement('p');
+                			//userElement.className = 'user';
+                			//userElement.innerHTML = '@' + this.slackMessages[0].user;
+					//messageElement.appendChild(userElement);
+					strUserTime = strUserTime + this.slackMessages[this.pointer].user;
+				}
+					
+				if(this.config.showTime) {
+					var date = new Date(this.slackMessages[this.pointer].messageId * 1000);
+					var hours = date.getHours();
+					var minutes = "0" + date.getMinutes();
+					strUserTime = strUserTime + ' @' + hours + ':' + minutes.substr(-2);
+					
+					if(this.config.showSeconds) {
+						var seconds = "0" + date.getSeconds();
+						strUserTime = strUserTime + ':' + seconds.substr(-2);
+					}
+				}
+				
+				if(this.config.showTime || this.config.showUserName) {
+					timeUserElement.innerHTML = strUserTime
+					messageElement.appendChild(timeUserElement);
+				}
+				
+				this.show();
+				this.counter = this.counter + 1;
+				if (this.counter === this.config.maxUserMessages) {
+					this.authors = [];
+					this.counter = 0;
 				}
 			}
-			
-			if(this.config.showTime || this.config.showUserName) {
-				timeUserElement.innerHTML = strUserTime
-				messageElement.appendChild(timeUserElement);
-			}
-		}
-		var timeStamp = Math.floor(Date.now() / 1000);
-		if((timeStamp - this.slackMessages[this.counter].messageId) > this.config.displayTime)
-		{
-			this.hide();
-		}
-		else 
-		{
-			this.show();
-		}
-		this.counter = this.counter + 1;
-		if (this.counter == this.config.maxUserMessages) {
-			this.counter = 0;
 		}
 		
 		return messageElement;

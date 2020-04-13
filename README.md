@@ -3,8 +3,9 @@ Forked from  grid-x.
 - Edited CSS file.
 - Removed Emoji support.
 - Removed brackets '[]' from Username.
-- Added Timestamp in front of Username. It will display as username @hh:mm.
-- added variables for the refresh-time and a display-timer: module displays only the last message for a given amount of time, and then hides itself until the next message is received.
+- Added Timestamp. It will display as username @hh:mm.
+- added variables for the refresh-time and a display-timer: module displays the last message of each user for a given amount of time. When the module updates, the message is updated if the author is different than one of the previous messages. If no message that is not too old exists, the module hides itself.
+
 
 Forked from stir.
 
