@@ -4,7 +4,7 @@ Forked from  grid-x.
 - Removed Emoji support.
 - Removed brackets '[]' from Username.
 - Added Timestamp. It will display as username @hh:mm.
-- Added variables for a refresh interval and a display-time: Module displays the last message of each user for a given amount of time. When the module updates, the message is updated to the next message wich is from a different author. If no message younger than the displayTime exists, the module will hide itself.
+- Added variables for a refresh interval and a display-time: Module displays the last message of each user for a given amount of time. When the module updates, the message is updated to the next message wich is from a different user. If no message younger than the displayTime exists, the module will hide itself.
 - added variable to prevent an immediate refresh when a new message arrives.
 See table below for configuration options.
 
@@ -88,7 +88,7 @@ Add the module to the modules array in the config/config.js file by adding the f
 	<tr>
         	<td>displayTime</td>
         	<td>The time in seconds the last message is displayed.</td>
-        	<td>10 min = 600 s</td>
+        	<td>60 min = 3600 s</td>
     	</tr>
 	<tr>
         	<td>urgentRefresh</td>
