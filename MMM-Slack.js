@@ -5,7 +5,7 @@ Module.register('MMM-Slack',{
 	showSeconds: false,
 	maxUsers: 3,
 	updateInterval: 60000,
-	displayTime: 600,
+	displayTime: 3600,
 	urgentRefresh: false,
 	animationSpeed: 1000
 	},
