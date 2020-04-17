@@ -1,12 +1,13 @@
 Module.register('MMM-Slack',{
 	defaults: {
-        showLatestMessageOnStartup: false,
         showUserName: true,
 	showTime: true,
 	showSeconds: false,
-	maxUserMessages: 3,
-	refreshTime: 60000,
-	displayTime: 600
+	maxUsers: 3,
+	updateInterval: 60000,
+	displayTime: 3600,
+	urgentRefresh: false,
+	animationSpeed: 1000
 	},
 	
 	getStyles: function() {
@@ -19,10 +20,13 @@ Module.register('MMM-Slack',{
 		this.pointer = 0;
 		this.authors = [];
 		this.openSlackConnection();
+		if (!this.config.urgentRefresh) {
+			this.updateDom(this.config.animationSpeed);
+		}
         	var self = this;
         	setInterval(function() {
-        		self.updateDom(1000);
-        	}, self.config.refreshTime);
+        		self.updateDom(self.config.animationSpeed);
+        	}, self.config.updateInterval);
 	},
 
 	openSlackConnection: function() {
@@ -33,7 +37,11 @@ Module.register('MMM-Slack',{
 		if(notification === 'SLACK_DATA'){
 			if(payload != null) {
 				this.slackMessages = payload;
-				this.updateDom(2.5 * 1000);
+				if (this.config.urgentRefresh) {
+					this.updateDom(this.config.animationSpeed);
+					this.authors = [];
+					this.counter = 0;
+				}
 			}
 		}
 	},
@@ -41,44 +49,51 @@ Module.register('MMM-Slack',{
 	getDom: function() {
 		var messageElement = document.createElement('div');
 		
-		messageElement.className = 'message';
-		if(this.slackMessages.length > 0)
-		{
+		messageElement.className = 'slackMessage';
+		if(this.slackMessages.length > 0) {
 			var tooOld = false;
 			var timeStamp = Math.floor(Date.now() / 1000);
-			if((timeStamp - this.slackMessages[this.counter].messageId) > this.config.displayTime) {
-				tooOld = true;
-			}
+			var boolAuthor = true;
 			
-			if (tooOld === true) {
-				if (this.counter === 0) {
-					this.hide();
+			while (boolAuthor && (tooOld === false)) {
+				if((timeStamp - this.slackMessages[this.counter].messageId) > this.config.displayTime) {
+					tooOld = true;
 				}
+				else {	
+					var newAuthor = 0;
+					for (i=0; i<this.authors.length; i++) {
+						if (this.authors[i] !== this.slackMessages[this.counter].user) {
+							newAuthor = newAuthor + 1;
+						}
+					}
+					
+					if (newAuthor == this.authors.length) {
+						boolAuthor = false;
+					}
+					else {
+						this.counter = this.counter + 1;
+					}
+				}
+			}
+				
+			if (tooOld && this.counter === 0) {
+				this.hide();
 				this.authors = [];
 				this.counter = 0;
 			}
-			else {
-				var boolAuthor = false;
-				for (i=0; i<this.authors.length; i++) {
-					if (this.authors[i] === this.slackMessages[this.counter].user) {
-						boolAuthor = true;
-					}
+			else  {
+				if (tooOld) {
+					this.authors = [];
+					this.counter = 0;
 				}
-				if (boolAuthor === false) {
-					this.authors.push(this.slackMessages[this.counter].user);
-					this.pointer = this.counter;
-				}
-				
+				this.pointer = this.counter;
+				this.authors.push(this.slackMessages[this.pointer].user);
 				messageElement.innerHTML = this.slackMessages[this.pointer].message;
 				var timeUserElement = document.createElement('p');
-				timeUserElement.className = 'timeAndUser';
+				timeUserElement.className = 'slackUserAndTime';
 				var strUserTime = "";
 				
 				if(this.config.showUserName) {
-                			//var userElement = document.createElement('p');
-                			//userElement.className = 'user';
-                			//userElement.innerHTML = '@' + this.slackMessages[0].user;
-					//messageElement.appendChild(userElement);
 					strUserTime = strUserTime + this.slackMessages[this.pointer].user;
 				}
 					
@@ -100,8 +115,17 @@ Module.register('MMM-Slack',{
 				}
 				
 				this.show();
-				this.counter = this.counter + 1;
-				if (this.counter === this.config.maxUserMessages) {
+				if((timeStamp - this.slackMessages[this.counter + 1].messageId) > this.config.displayTime) {
+					this.authors = [];
+					this.counter = 0;
+				}
+				else {
+					this.counter = this.counter + 1;
+				}
+				//if (!tooOld) {
+				//	this.counter = this.counter + 1;
+				//}
+				if (this.authors.length === this.config.maxUsers) {
 					this.authors = [];
 					this.counter = 0;
 				}
