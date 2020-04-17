@@ -115,9 +115,16 @@ Module.register('MMM-Slack',{
 				}
 				
 				this.show();
-				if (!tooOld) {
+				if((timeStamp - this.slackMessages[this.counter + 1].messageId) > this.config.displayTime) {
+					this.authors = [];
+					this.counter = 0;
+				}
+				else {
 					this.counter = this.counter + 1;
 				}
+				//if (!tooOld) {
+				//	this.counter = this.counter + 1;
+				//}
 				if (this.authors.length === this.config.maxUsers) {
 					this.authors = [];
 					this.counter = 0;
